@@ -5,13 +5,11 @@ import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import studentsData from "../../../common/data/results";
-import Arab from "../../../../public/arb_busines.png";
-import { motion } from "framer-motion";
+
 
 export default function ClassResults() {
   const params = useParams();
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
   const classId = params.class as string;
 
   // Filter students by class
@@ -33,15 +31,6 @@ export default function ClassResults() {
 
   const subjectFields = Array.from(allFields);
 
-  useEffect(() => {
-    // Simulate loading
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   // Format class name for display
   const formatClassName = (classId: string) => {
     if (classId === "+1") return "Class +1";
@@ -59,43 +48,6 @@ export default function ClassResults() {
       .replace(/([A-Z])/g, " $1")
       .replace(/^./, (str) => str.toUpperCase());
   };
-
-  if (loading) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-emerald-900/70 backdrop-blur-sm z-50">
-        <div className="relative w-full max-w-md mx-auto">
-          <div className="relative flex flex-col items-center">
-            {/* Background Image */}
-            <motion.img
-              src="/your-image.png" // Replace with your actual image path
-              alt="Loading"
-              className="w-full max-w-sm h-auto rounded-lg shadow-lg"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            />
-
-            {/* Animated Loading Dots */}
-            <div className="absolute bottom-[12%] flex space-x-2">
-              {[0, 1, 2].map((i) => (
-                <motion.span
-                  key={i}
-                  className="w-4 h-4 bg-emerald-600 rounded-full"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{
-                    duration: 0.6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: i * 0.2,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   if (classStudents.length === 0) {
     return (
