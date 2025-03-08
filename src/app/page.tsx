@@ -32,6 +32,7 @@ export default function Home() {
       // ✅ FIXED: Added 'error' inside catch
       setError("Something went wrong!");
       setLoading(false);
+      console.log(error);
     }
   };
 
