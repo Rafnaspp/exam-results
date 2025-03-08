@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import KidCap from "../../public/kid_cap.png";
+// import Image from "next/image";
+// import KidCap from "../../public/kid_cap.png";
 
 export default function Home() {
   const [madrassa, setMadrassa] = useState("");
@@ -28,7 +28,8 @@ export default function Home() {
         }
         setLoading(false);
       }, 1500);
-    } catch (err) {
+    } catch (error) {
+      // ✅ FIXED: Added 'error' inside catch
       setError("Something went wrong!");
       setLoading(false);
     }
