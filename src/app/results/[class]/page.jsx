@@ -172,8 +172,8 @@ export default function ClassResults() {
                               Number(student[subject]) < 50
                                 ? "text-red-600"
                                 : Number(student[subject]) >= 80
-                                ? "text-emerald-600 font-medium"
-                                : "text-gray-700"
+                                ? "text-black font-medium"
+                                : "text-black-700"
                             }`}
                           >
                             {student[subject]}
