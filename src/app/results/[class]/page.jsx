@@ -1,16 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import studentsData from "../../../common/data/results";
-
 
 export default function ClassResults() {
   const params = useParams();
   const router = useRouter();
-  const classId = params.class as string;
+  const classId = params.class;
 
   // Filter students by class
   const classStudents = studentsData.filter(
@@ -20,7 +17,7 @@ export default function ClassResults() {
   console.log(studentsData, classStudents, "CLASS STUDENTS");
 
   // Get all possible subject fields from the students in this class
-  const allFields = new Set<string>();
+  const allFields = new Set();
   classStudents.forEach((student) => {
     Object.keys(student).forEach((key) => {
       if (key !== "name" && key !== "class" && key !== "status") {
@@ -32,7 +29,7 @@ export default function ClassResults() {
   const subjectFields = Array.from(allFields);
 
   // Format class name for display
-  const formatClassName = (classId: string) => {
+  const formatClassName = (classId) => {
     if (classId === "+1") return "Class +1";
     if (classId?.includes(".")) {
       const [num, section] = classId?.split(".");
@@ -42,7 +39,7 @@ export default function ClassResults() {
   };
 
   // Format subject name for display
-  const formatSubjectName = (subject: string) => {
+  const formatSubjectName = (subject) => {
     // Convert camelCase to words with spaces and capitalize first letter
     return subject
       .replace(/([A-Z])/g, " $1")
