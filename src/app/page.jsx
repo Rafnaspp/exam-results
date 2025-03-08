@@ -118,7 +118,7 @@ export default function Home() {
       {/* Result Card */}
       {result && (
         <div className="mt-6 p-6 bg-white shadow-lg rounded-lg w-full max-w-md text-gray-900">
-          <h2 className="text-lg font-semibold">Student: {result.name}</h2>
+          <h2 className="text-lg font-semibold">Student: {result?.name}</h2>
           <p>
             Status:{" "}
             <span
