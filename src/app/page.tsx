@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen p-6 bg-gradient-to-br from-green-500 to-green-700 text-white">
       <h2 className="text-2xl font-bold uppercase text-center w-full">
-        HIDAYATHUL ISLAM MADRASSA
+        ANSARUL ISLAM MADRASA, PAPPINISSERI WEST
       </h2>
       <h2 className="text-4xl font-bold mb-6 text-center w-full">
         Exam Results
@@ -76,9 +76,15 @@ export default function Home() {
             onChange={(e) => setClassName(e.target.value)}
           >
             <option value="">Select Class</option>
-            <option value="Class 1">Class 1</option>
-            <option value="Class 2">Class 2</option>
-            <option value="Class 3">Class 3</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="6-A">6-A</option>
+            <option value="6-B">6-B</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="+1">+1</option>
           </select>
         </div>
 
