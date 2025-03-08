@@ -163,7 +163,7 @@ export default function ClassResults() {
                       student.status === "Fail" ? "bg-red-50" : ""
                     } hover:bg-emerald-50 transition-colors`}
                   >
-                    <td className="p-3 font-medium">{student.name}</td>
+                    <td className="p-3 font-extrabold">{student.name}</td>
                     {subjectFields.map((subject) => (
                       <td key={subject} className="p-3 text-center">
                         {student[subject] !== undefined ? (
@@ -190,7 +190,7 @@ export default function ClassResults() {
                           : "text-red-600"
                       }`}
                     >
-                      {student.status}
+                      {student?.status}
                     </td>
                   </tr>
                 ))}
@@ -202,7 +202,7 @@ export default function ClassResults() {
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="text-sm text-emerald-800 mb-2 md:mb-0">
                 <span className="font-medium">Total Students:</span>{" "}
-                {classStudents.length}
+                {classStudents?.length}
               </div>
               <div className="text-sm text-emerald-800 text-center font-arabic">
                 الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
