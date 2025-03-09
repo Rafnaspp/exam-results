@@ -10,23 +10,12 @@ export default function ClassResults() {
   const classId = params.class;
 
   // Filter students by class
-  const classStudents = studentsData.filter(
-    (student) => student.class === classId
-  );
+  const students = studentsData[classId] || [];
 
-  console.log(studentsData, classStudents, "CLASS STUDENTS");
+  console.log(students, "CLASS STUDENTS");
 
   // Get all possible subject fields from the students in this class
   const allFields = new Set();
-  classStudents.forEach((student) => {
-    Object.keys(student).forEach((key) => {
-      if (key !== "name" && key !== "class" && key !== "status") {
-        allFields.add(key);
-      }
-    });
-  });
-
-  const subjectFields = Array.from(allFields);
 
   // Format class name for display
   const formatClassName = (classId) => {
@@ -46,7 +35,7 @@ export default function ClassResults() {
       .replace(/^./, (str) => str.toUpperCase());
   };
 
-  if (classStudents.length === 0) {
+  if (students.length === 0) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-emerald-900/90 via-emerald-800/85 to-emerald-900/90">
         <div className="container mx-auto px-4 py-8">
@@ -138,53 +127,35 @@ export default function ClassResults() {
                   <th className="p-3 text-left text-emerald-800 font-semibold">
                     Student Name
                   </th>
-                  {subjectFields.map((subject) => (
-                    <th
-                      key={subject}
-                      className="p-3 text-center text-emerald-800 font-semibold"
-                    >
-                      {formatSubjectName(subject)}
-                    </th>
-                  ))}
+
                   <th className="p-3 text-center text-emerald-800 font-semibold">
                     Status
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {classStudents.map((student, index) => (
+                {students.map((student, index) => (
                   <tr
                     key={index}
-                    className={`border-b border-emerald-100 ${
-                      index % 2 === 0 ? "bg-white" : "bg-emerald-50/50"
-                    } ${
-                      student.status === "Fail" ? "bg-red-50" : ""
-                    } hover:bg-emerald-50 transition-colors`}
+                    className={`border-b border-gray-200 ${
+                      student.status === "FAILED"
+                        ? "bg-red-50 hover:bg-red-100"
+                        : "bg-green-50 hover:bg-green-100"
+                    } transition-colors`}
                   >
-                    <td className="p-3 font-extrabold">{student.name}</td>
-                    {subjectFields.map((subject) => (
-                      <td key={subject} className="p-3 text-center">
-                        {student[subject] !== undefined ? (
-                          <span
-                            className={`${
-                              Number(student[subject]) < 50
-                                ? "text-red-600"
-                                : Number(student[subject]) >= 80
-                                ? "text-black font-medium"
-                                : "text-black-700"
-                            }`}
-                          >
-                            {student[subject]}
-                          </span>
-                        ) : (
-                          <span className="text-gray-400">N/A</span>
-                        )}
-                      </td>
-                    ))}
+                    <td
+                      className={`p-3 text-left font-bold ${
+                        student.status === "PASSED"
+                          ? "text-green-600"
+                          : "text-red-600"
+                      }`}
+                    >
+                      {student?.name}
+                    </td>
                     <td
                       className={`p-3 text-center font-bold ${
-                        student.status === "Pass"
-                          ? "text-emerald-600"
+                        student.status === "PASSED"
+                          ? "text-green-600"
                           : "text-red-600"
                       }`}
                     >
@@ -200,7 +171,7 @@ export default function ClassResults() {
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="text-sm text-emerald-800 mb-2 md:mb-0">
                 <span className="font-medium">Total Students:</span>{" "}
-                {classStudents?.length}
+                {students?.length}
               </div>
               <div className="text-sm text-emerald-800 text-center font-arabic">
                 الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
@@ -209,30 +180,7 @@ export default function ClassResults() {
           </div>
         </div>
 
-        {/* Legend */}
-        <div className="bg-white/95 backdrop-blur-md rounded-lg shadow-lg p-4 mb-8">
-          <h4 className="font-semibold text-emerald-800 mb-2">
-            Grading Legend
-          </h4>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
-            <div className="flex items-center">
-              <span className="w-3 h-3 rounded-full bg-emerald-600 mr-2"></span>
-              <span>80-100: Excellent</span>
-            </div>
-            <div className="flex items-center">
-              <span className="w-3 h-3 rounded-full bg-green-500 mr-2"></span>
-              <span>70-79: Very Good</span>
-            </div>
-            <div className="flex items-center">
-              <span className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></span>
-              <span>60-69: Good</span>
-            </div>
-            <div className="flex items-center">
-              <span className="w-3 h-3 rounded-full bg-red-500 mr-2"></span>
-              <span>Below 50: Needs Improvement</span>
-            </div>
-          </div>
-        </div>
+     
 
         {/* Footer */}
         <footer className="text-center text-white/80 text-sm">
