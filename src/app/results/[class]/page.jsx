@@ -107,12 +107,10 @@ export default function ClassResults() {
             Back to Search
           </Link>
 
-          <h1 className="text-2xl md:text-4xl font-bold text-white mb-2 font-arabic">
-            بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-          </h1>
-          <h2 className="text-xl md:text-3xl font-bold text-white mb-2">
-            ANSARUL ISLAM MADRASA
+          <h2 className="text-xl md:text-3xl font-bold text-white mb-2 font-arabic">
+            مَدْرَسَةُ أَنْصَارِ الإِسْلَامِ
           </h2>
+
           <h3 className="text-lg md:text-xl text-white/90 mb-4">
             PAPPINISSERI WEST
           </h3>
