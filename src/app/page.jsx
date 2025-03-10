@@ -129,7 +129,7 @@ export default function Home() {
                       <option value="6.B">Class 6-B</option>
                       <option value="8">Class 8</option>
                       <option value="9">Class 9</option>
-                      <option value="+1">Class +1</option>
+                      <option value="plusOne">Class +1</option>
                     </select>
                   </div>
 
